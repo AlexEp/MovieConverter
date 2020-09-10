@@ -1,0 +1,55 @@
+<div class="row">
+    <div class="col-12 col-md-6">
+        <div class="card mt-5">
+            <div class="card-header">
+                <h3>Upload your file !</h3> 
+            </div>
+            <div class="card-body">
+                <div class="text-danger mb-3" *ngIf="!isServerConnected()">No connection to the server !</div>
+              <app-fileuploader [upload-enabled]="isServerConnected()"></app-fileuploader>
+            </div>
+        </div>
+
+    </div>
+    <div class="col-12 col-md-6">
+        <div class="card mt-5">
+            <div class="card-header">
+                <h3>Status:</h3>
+            </div>
+            <div class="card-body">
+                <div>
+                    <table style="width: 100%;">
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="border-bottom">
+                                <th>Uploaded</th>
+                                <th><app-file-status [file-status]="fileStatus.Uploaded"  > </app-file-status></th>
+                            </tr>
+                            <tr class="border-bottom">
+                                <th>Converted H264</th>
+                                <th><app-file-status [file-status]="fileStatus.Converted"  > </app-file-status ></th>
+                            </tr>
+                            <tr class="border-bottom">
+                                <th>Thumbnails 1s</th>
+                                <th><app-file-status [file-status]="fileStatus.Thumbnails1s" > </app-file-status ></th>
+                            </tr>
+                            <tr class="border-bottom">
+                                <th>Thumbnails 3s</th>
+                                <th><app-file-status [file-status]="fileStatus.Thumbnails3s" > </app-file-status ></th>
+                            </tr>
+                        </tbody>
+
+                    </table>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>

@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29728.190
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Artlist.Common", "Artlist.Common.csproj", "{DB6AC824-BCC6-48F6-A9BF-920148D97965}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{DB6AC824-BCC6-48F6-A9BF-920148D97965}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DB6AC824-BCC6-48F6-A9BF-920148D97965}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DB6AC824-BCC6-48F6-A9BF-920148D97965}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DB6AC824-BCC6-48F6-A9BF-920148D97965}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {FB331173-22C3-45A1-9916-A94825668FB7}
+	EndGlobalSection
+EndGlobal
