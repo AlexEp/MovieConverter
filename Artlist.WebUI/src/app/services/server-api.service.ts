@@ -3,9 +3,10 @@ import { HttpClient, HttpEvent, HttpErrorResponse, HttpEventType, HttpHeaders } 
 import { environment } from '../../environments/environment';
 
 /* Rxjs */
-import { Observable } from 'rxjs';
+import { Observable, of, throwError } from 'rxjs';
 import { map, retry, catchError } from 'rxjs/operators';
-import { UploadedFile } from '../shared/uploaded-file.model';
+import { UploadedFile } from '../shared/file.model';
+
 
 @Injectable({
   providedIn: 'root'
@@ -36,7 +37,11 @@ export class ServerApiService {
         default:
           return  { message: 'error', progress: 0, body : null };
       }
-    })
+    }),
+    catchError(err => {
+      //... Some ganeric code to deal with error
+      return throwError(err);
+    }),
     );
   }
 
@@ -54,6 +59,7 @@ export class ServerApiService {
   }
   
 }
+
 
 
 

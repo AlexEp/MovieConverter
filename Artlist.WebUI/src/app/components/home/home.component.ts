@@ -1,4 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
+import { environment } from '../../../environments/environment';
 
 //plugins
 import { ToastrService } from 'ngx-toastr';
@@ -11,13 +12,19 @@ import { EventsService } from 'src/app/services/events.service';
 import { AppEventTypes  } from 'src/app/shared/app-event.model';
 import { ProcessRequestType, ProcessStatusType } from 'src/app/shared/constans';
 import { isNumber } from 'util';
+import { ProcessConvertedFileResponse, ProcessThumbnailsResponse } from 'src/app/shared/file.model';
+
 
 interface fileStatus {
   UploadFileId: string | null,
-  Uploaded: ProcessStatusType | null,
-  Converted: ProcessStatusType | null,
-  Thumbnails1s: ProcessStatusType | null,
-  Thumbnails3s: ProcessStatusType | null
+  UploadedStatus: ProcessStatusType | null,
+  ConvertedStatus: ProcessStatusType | null,
+  Thumbnails1sStatus: ProcessStatusType | null,
+  Thumbnails3sStatus: ProcessStatusType | null
+
+  ThumbnailsResponse1s : ProcessThumbnailsResponse,
+  ThumbnailsResponse3s : ProcessThumbnailsResponse,
+  ConvertedResponse : ProcessConvertedFileResponse,
 };
 
 
@@ -41,7 +48,7 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
 
-    // this.serverApi.getFile(this.showTop).subscribe(r =>  this.uploadedFiles = r);
+    // this.serverApi.getFile(this.showTop).subscribe(r =>  this.UploadedStatusFiles = r);
     this.clearFileStatus();
     this.signalRService.startConnection();
     this.subscriptionEvent = this.signalRService.getEvent().subscribe(event => {
@@ -71,7 +78,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     switch (event.type) {
       case ProcessRequestType.FileUpload:
         {
-          this.fileStatus.Uploaded = event.status;
+          this.fileStatus.UploadedStatus = event.status;
           if(event.status == ProcessStatusType.Failed){
               this.toastr.error(event.massege, "Upload Failed")
           }
@@ -82,7 +89,7 @@ export class HomeComponent implements OnInit, OnDestroy {
         break;
       case ProcessRequestType.ConvertFile:
       {
-        this.fileStatus.Converted = event.status;
+        this.fileStatus.ConvertedStatus = event.status;
         if(event.status == ProcessStatusType.Failed){
           this.toastr.error(event.massege, "Convert Failed")
         }
@@ -90,14 +97,16 @@ export class HomeComponent implements OnInit, OnDestroy {
         break;
       case ProcessRequestType.CreateThumbnails:
       {
-         if(isNumber(event.data) ){
-            const num = <Number>event.data;
+         if(isNumber(event.data?.request?.miliseconds) ){
+            const num = <Number>event.data.request.miliseconds;
 
             if(+num === 1000) {
-              this.fileStatus.Thumbnails1s = event.status;
+              this.fileStatus.Thumbnails1sStatus = event.status;
+              this.fileStatus.ThumbnailsResponse1s = event.data;
             } 
             else if (+num === 3000){
-              this.fileStatus.Thumbnails3s = event.status;
+              this.fileStatus.Thumbnails3sStatus = event.status;
+              this.fileStatus.ThumbnailsResponse3s = event.data;
             }
 
             if(event.status == ProcessStatusType.Failed){
@@ -115,10 +124,18 @@ export class HomeComponent implements OnInit, OnDestroy {
     }
   }
 
+   getFileUrl(fileId: string | null): string{
+    if(!fileId)
+      return "";
+
+    return `${environment.backend.apiUrl}\\resource\\${fileId}`
+  }
+
   clearFileStatus() {
     this.fileStatus = {
-      Uploaded: null, Converted: null,UploadFileId : null,
-      Thumbnails1s: null, Thumbnails3s: null
+      UploadedStatus: null, ConvertedStatus: null,UploadFileId : null,
+      Thumbnails1sStatus: null, Thumbnails3sStatus: null,
+      ConvertedResponse : null, ThumbnailsResponse1s: null, ThumbnailsResponse3s:null
     }
   }
   ngOnDestroy(): void {

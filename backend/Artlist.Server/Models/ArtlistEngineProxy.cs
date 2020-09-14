@@ -71,6 +71,21 @@ namespace Artlist.Server.Models
             return uploadedFile;
         }
 
+        public async Task<Stream> GetThumbnails(string id)
+        {
+
+            RestClient restClient = new RestClient($"{_appSettings.ArtlisCoreServer.URL}");
+            RestRequest restRequest = new RestRequest($"{THUMBNAIL_ENDPOINT}/file/{id}", Method.GET);
+            //restRequest.RequestFormat = DataFormat.Json;
+
+            //restRequest.AddHeader("Content-Type", "application/json");
+
+            //ProcessTask
+            Stream stream = new MemoryStream(restClient.DownloadData(restRequest));
+
+            return stream;
+
+        }
 
         public async Task ProcessRequestThumbnails(ProcessRequestThumbnails processTask)
         {

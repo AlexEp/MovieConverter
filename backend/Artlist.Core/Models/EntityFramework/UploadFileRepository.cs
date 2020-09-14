@@ -39,18 +39,32 @@ namespace Artlist.Core.Models.EntityFramework
             }
         }
 
-        public  UploadedFile Get(string id)
+        public UploadedFile Get(string id)
+        {
+            return Get(id,false);
+        }
+
+
+        public  UploadedFile Get(string id, Boolean isWithChildren = false)
         {
             UploadedFile file;
             using (var context = CreateContext())
             {
-                file =  context.UploadedFiles.FirstOrDefault(up => up.Id == id);
+                if (isWithChildren)
+                {
+                    file = context.UploadedFiles.Include(u => u.Thumbnails).Include(u => u.ConvertedFiles).FirstOrDefault(up => up.Id == id);
+                }
+                else
+                {
+                    file = context.UploadedFiles.FirstOrDefault(up => up.Id == id);
+                }
+
             }
 
             return file;
         }
 
-        public async Task<IList<UploadedFile>> GetLastAsync(int count)
+        public async Task<IList<UploadedFile>> GetLastAsync(int count, Boolean isWithChildren = false)
         {
             IList<UploadedFile> list;
             using (var context = CreateContext())

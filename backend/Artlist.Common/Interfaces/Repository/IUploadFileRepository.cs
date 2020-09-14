@@ -8,7 +8,8 @@ namespace Artlist.Common.Interfaces.Repository
 {
     public interface IUploadFileRepository : IRepository<UploadedFile>
     {
-        public Task<IList<UploadedFile>> GetLastAsync(int count);
+        public Task<IList<UploadedFile>> GetLastAsync(int count,Boolean isWithChildren = false);
+        public UploadedFile Get(string id, Boolean isWithChildren = false);
     }
 }
 

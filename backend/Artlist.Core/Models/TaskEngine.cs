@@ -60,7 +60,7 @@ namespace Artlist.Core.Models
                     }
                     else
                     {
-                        _logger.LogInformation("Execute Task {task}", Thread.CurrentThread.ManagedThreadId);
+                        _logger.LogInformation("Execute Task [ThreadId:{task}]", Thread.CurrentThread.ManagedThreadId);
                         nextItem.Execute();
                     }
                 }

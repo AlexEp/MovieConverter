@@ -16,7 +16,6 @@ namespace Artlist.Common.Models.ProcessTasks
     public class ProcessRequestThumbnails : Process {
         public string UploadFileId { get; set; }
         public int  Miliseconds { get; set; }
-
     }
 
     public class ProcessRequestConvert : Process

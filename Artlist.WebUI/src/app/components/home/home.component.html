@@ -23,24 +23,34 @@
                             <tr>
                                 <th></th>
                                 <th></th>
+                                <th></th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr class="border-bottom">
-                                <th>Uploaded</th>
-                                <th><app-file-status [file-status]="fileStatus.Uploaded"  > </app-file-status></th>
+                                <td>Uploaded</td>
+                                <td></td>
+                                <td><app-file-status [file-status]="fileStatus.UploadedStatus"  > </app-file-status></td>
                             </tr>
                             <tr class="border-bottom">
-                                <th>Converted H264</th>
-                                <th><app-file-status [file-status]="fileStatus.Converted"  > </app-file-status ></th>
+                                <td>Converted H264</td>
+                                <td></td>
+                                <td><app-file-status [file-status]="fileStatus.ConvertedStatus"  > </app-file-status ></td>
                             </tr>
                             <tr class="border-bottom">
-                                <th>Thumbnails 1s</th>
-                                <th><app-file-status [file-status]="fileStatus.Thumbnails1s" > </app-file-status ></th>
+                                <td>Thumbnails 1s</td>
+                                <td>
+                                    <a class="btn btn-sm btn-outline-primary" *ngIf="fileStatus?.ThumbnailsResponse1s?.thumbnail?.id" 
+                                    [href]="getFileUrl(fileStatus?.ThumbnailsResponse1s?.thumbnail?.id)" target="_blank" ><i class="fa fa-eye" aria-hidden="true"></i></a></td>
+                                <td><app-file-status [file-status]="fileStatus?.ThumbnailsResponse1s?.status" > </app-file-status >
+                           </td>
                             </tr>
                             <tr class="border-bottom">
-                                <th>Thumbnails 3s</th>
-                                <th><app-file-status [file-status]="fileStatus.Thumbnails3s" > </app-file-status ></th>
+                                <td>Thumbnails 3s</td>
+                                <td>
+                                    <a class="btn btn-sm btn-outline-primary" *ngIf="fileStatus?.ThumbnailsResponse3s?.thumbnail?.id" 
+                                    [href]="getFileUrl(fileStatus?.ThumbnailsResponse3s?.thumbnail?.id)" target="_blank"><i class="fa fa-eye" aria-hidden="true"></i> </a></td>
+                                <td><app-file-status [file-status]="fileStatus?.ThumbnailsResponse3s?.status" > </app-file-status ></td>
                             </tr>
                         </tbody>
 

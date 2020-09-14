@@ -13,10 +13,18 @@ namespace Artlist.Server.Controllers
     {
         private readonly ILogger<HomeController> _logger;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, AppSettings appSettings)
         {
             _logger = logger;
         }
+
+
+        //[Route("About")]
+        //[HttpPost("About/{id?}")]
+        //public IActionResult MyAbout(int? id)
+        //{
+        //    return Content("");
+        //}
 
         public IActionResult Index()
         {

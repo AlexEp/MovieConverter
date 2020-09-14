@@ -1,0 +1,12 @@
+<h1>users </h1>
+
+
+<div *ngFor="let name of (usersNames$  | async) ">
+    {{name}}
+</div> 
+<div *ngFor="let age of (usersAges$  | async) ">
+    {{age}}
+</div> 
+
+
+<button class="btn btn-primary" (click)="addUser()">Add</button>

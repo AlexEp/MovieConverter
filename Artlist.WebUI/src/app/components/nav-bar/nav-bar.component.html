@@ -13,8 +13,14 @@
     <div class="collapse navbar-collapse" id="navContent">
        <!-- Some Navigation -->
       <ul class="navbar-nav mr-auto">
-        <li class="nav-item active">
-          <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+        <li class="nav-item ">
+          <a class="nav-link" [routerLink]="['home']" routerLinkActive="active current" >Home<span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item ">
+          <a class="nav-link" [routerLink]="['reports','uploadedFiles']" routerLinkActive="active current" >Report <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item ">
+          <a class="nav-link" [routerLink]="['users']" routerLinkActive="active current" >Users <span class="sr-only">(current)</span></a>
         </li>
       </ul>
  

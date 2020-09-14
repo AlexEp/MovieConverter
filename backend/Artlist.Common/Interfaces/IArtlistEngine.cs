@@ -20,6 +20,8 @@ namespace Artlist.Common.Interfaces
          Task ProcessRequestThumbnails(ProcessRequestThumbnails processTask);
          Task ProcessRequestConvert(ProcessRequestConvert processTask);
 
+        Task<Stream> GetThumbnails(string id);
+
 
 
     }

@@ -226,6 +226,21 @@ namespace Artlist.Core
             }
         }
 
+        public async Task<Stream> GetThumbnails(string id)
+        {
+            var thumbnail = _thumbnailFileRepository.Get(id);
 
+            if (thumbnail == null)
+            {
+                throw new Exception($"File {id} not Found");
+            }
+            var path = _fileStore.GetThumbnailFileFolder(thumbnail);
+            var pathSource = Path.Combine(path,$"{thumbnail.Id}.png");
+
+            FileStream fsSource = new FileStream(pathSource,
+                FileMode.Open, FileAccess.Read);
+
+            return fsSource;
+        }
     }
 }

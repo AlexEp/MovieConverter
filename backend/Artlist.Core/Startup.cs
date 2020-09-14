@@ -60,7 +60,7 @@ namespace Artlist.Core
             services.AddScoped<IConvertedFileRepository>(s => convertedFileRepository);
             var thumbnailFileRepository = new ThumbnailFileRepository(optionsBuilder.Options);
             services.AddScoped<IThumbnailFileRepository>(s => thumbnailFileRepository);
-
+     
 
             /* *** [Reg Swagger] *** */
             // Register the Swagger generator, defining 1 or more Swagger documents

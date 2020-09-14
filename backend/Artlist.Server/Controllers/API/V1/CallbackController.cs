@@ -36,7 +36,7 @@ namespace Artlist.Server.Controllers.API.V1
                 Type = ProcessRequestType.CreateThumbnails,
                 FileId = response.UploadedFileId,
                 Percent = 0,
-                Data = response.Request.Miliseconds
+                Data = response
             };
 
             proccesEvent.Status = response.Status;
@@ -63,7 +63,11 @@ namespace Artlist.Server.Controllers.API.V1
         [HttpPost("fileconvert")]
         public async Task ConvertFile(ProcessConvertResponse response)
         {
-            var proccesEvent = new ProccesEvent() { Type = ProcessRequestType.ConvertFile, FileId = response.UploadedFileId, Percent = 0 };
+            var proccesEvent = new ProccesEvent() { Type = ProcessRequestType.ConvertFile, 
+                FileId = response.UploadedFileId,
+                Percent = 0 ,
+                Data = response
+            };
             proccesEvent.Status = response.Status;
             switch (response.Status)
             {

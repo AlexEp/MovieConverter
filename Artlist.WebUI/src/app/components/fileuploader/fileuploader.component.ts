@@ -7,7 +7,8 @@ import { FileUploader, ParsedResponseHeaders, FileItem } from 'ng2-file-upload';
 import { EventsService } from 'src/app/services/events.service';
 import { Subscription } from 'rxjs';
 import { AppEvent, AppEventTypes } from 'src/app/shared/app-event.model';
-import { UploadedFile } from 'src/app/shared/uploaded-file.model';
+import { UploadedFile } from 'src/app/shared/file.model';
+
 
 @Component({
   selector: 'app-fileuploader',
@@ -31,7 +32,6 @@ export class FileuploaderComponent implements OnInit {
       var obj = JSON.parse(response);
 
       if(obj){
-      
         this.eventsService.addEvent(new AppEvent(AppEventTypes.FileUploadEnd,  <UploadedFile>obj));
       }
       this.eventsService.addEvent(new AppEvent(AppEventTypes.FileUploadEnd,null));
