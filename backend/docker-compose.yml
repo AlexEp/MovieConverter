@@ -1,0 +1,15 @@
+version: '3.4'
+
+services:
+  artlist.core:
+    image: ${DOCKER_REGISTRY-}artlistcore
+    build:
+      context: .
+      dockerfile: Artlist.Core/Dockerfile
+
+  artlist.server:
+    image: ${DOCKER_REGISTRY-}artlistserver
+    build:
+      context: .
+      dockerfile: Artlist.Server/Dockerfile
+

@@ -34,8 +34,10 @@ namespace Artlist.Server
 
             /* *** [App settings] *** */
             var appSettingsSection = Configuration.GetSection("AppSettings");
+            //Now you can load this by IOptions<AppSettings>
             services.Configure<AppSettings>(appSettingsSection);
-
+        
+            //bind section to class
             AppSettings appSettings = appSettingsSection.Get<AppSettings>();
 
             /* *** [Init DAL] *** */
